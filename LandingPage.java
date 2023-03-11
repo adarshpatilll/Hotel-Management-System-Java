@@ -9,11 +9,11 @@ import java.awt.event.*;
  * Co-Founders -> Vikram, Yusuf
  */
 
- class LandingPage implements ActionListener {
+ public class LandingPage implements ActionListener {
     static JFrame fr = new JFrame("Welcome");
-    ImageIcon mainImg;
-    JLabel imgLbl, titleLbl;
-    JButton next, exit;
+    private ImageIcon mainImg;
+    private JLabel imgLbl, titleLbl;
+    private JButton next;
 
     LandingPage(){
         //------Main Image
@@ -43,7 +43,7 @@ import java.awt.event.*;
         fr.setVisible(true);
     }
     
-    void titleDisplay(){
+    private void titleDisplay(){
         //------Title - VAY
         titleLbl = new JLabel("VAY");
         titleLbl.setFont(new Font("Arial Black", Font.BOLD, 150));
@@ -68,7 +68,6 @@ import java.awt.event.*;
 
     @Override
     public void actionPerformed(ActionEvent e){
-        // fr.setVisible(false);
         new Login();
     }
     

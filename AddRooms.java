@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
+@SuppressWarnings("all")
 public class AddRooms extends JFrame implements ActionListener {
     JButton addRoom, cancel;
     JTextField roomA,priceA;
@@ -117,6 +119,7 @@ public class AddRooms extends JFrame implements ActionListener {
         setBounds(500, 250, 900, 470);
         getContentPane().setBackground(Color.white);
         setLayout(null);
+        setUndecorated(true);
         setResizable(false);
         setVisible(true);
     }

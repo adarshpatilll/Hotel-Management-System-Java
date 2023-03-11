@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-class Dashboard extends JFrame implements ActionListener{
+public class Dashboard extends JFrame implements ActionListener{
 
     Dashboard(){
         //------Main Image
@@ -37,6 +37,7 @@ class Dashboard extends JFrame implements ActionListener{
                 JMenuItem rec = new JMenuItem("RECEPTION");
                 rec.setForeground(Color.black);
                 rec.setFont(new Font("arial", 1, 13));
+                rec.addActionListener(this);
                 hotel.add(rec);
 
             //------Menu -> Admin
@@ -49,6 +50,7 @@ class Dashboard extends JFrame implements ActionListener{
                 JMenuItem addEmp = new JMenuItem("ADD EMPLOYEE");
                 addEmp.setForeground(Color.black);
                 addEmp.setFont(new Font("arial", 1, 13));
+                addEmp.addActionListener(this);
                 admin.add(addEmp);
                 admin.addSeparator();
                 
@@ -56,6 +58,7 @@ class Dashboard extends JFrame implements ActionListener{
                 JMenuItem addRooms = new JMenuItem("ADD ROOMS");
                 addRooms.setForeground(Color.black);
                 addRooms.setFont(new Font("arial", 1, 13));
+                addRooms.addActionListener(this);
                 admin.add(addRooms);
                 admin.addSeparator();
                 
@@ -63,6 +66,7 @@ class Dashboard extends JFrame implements ActionListener{
                 JMenuItem addDriver = new JMenuItem("ADD DRIVER");
                 addDriver.setForeground(Color.black);
                 addDriver.setFont(new Font("arial", 1, 13));
+                addDriver.addActionListener(this);
                 admin.add(addDriver);
 
         //------Frame
@@ -79,7 +83,14 @@ class Dashboard extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e){
-        
+        if(e.getActionCommand().equals("ADD EMPLOYEE"))
+            new AddEmployee();
+        else if(e.getActionCommand().equals("ADD ROOMS"))
+            new AddRooms();
+        else if(e.getActionCommand().equals("ADD DRIVER"))
+            new AddDriver();
+        // else if(e.getActionCommand().equals("RECEPTION"))
+            
     }
 
     public static void main(String... ap) {

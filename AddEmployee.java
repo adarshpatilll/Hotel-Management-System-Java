@@ -4,11 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+@SuppressWarnings("all")
 public class AddEmployee extends JFrame implements ActionListener {
     JTextField idArea, nameArea, ageArea, salArea, phoneArea, emailArea, aadharArea;
     JRadioButton genRbMale, genRbFemale;
     JComboBox jobArea;
-    JButton submit;
+    JButton submit,cancel;
 
     AddEmployee(){
         //------Label - ID
@@ -151,12 +152,21 @@ public class AddEmployee extends JFrame implements ActionListener {
 
         //------Button - Submit
         submit = new JButton("SUBMIT");
-        submit.setBounds(60,490,340,30);
-        submit.setFont(new Font("arial", Font.BOLD, 20));
-        submit.setBackground(Color.BLUE);
-        submit.setForeground(Color.WHITE);
+        submit.setBounds(60,490,150,30);
+        submit.setFont(new Font("arial", 0, 18));
+        submit.setBackground(new Color(126, 255, 141));
+        submit.setForeground(Color.black);
         submit.addActionListener(this);
         add(submit);
+
+        //------Button - Cancel
+        cancel = new JButton("CANCEL");
+        cancel.setBounds(250, 490, 150, 30);
+        cancel.setFont(new Font("arial", 0, 18));
+        cancel.setBackground(new Color(255, 126, 126));
+        cancel.setForeground(Color.black);
+        cancel.addActionListener(     a -> setVisible(false)    );
+        add(cancel);
 
         //------Image
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("images/tenth.jpg"));
@@ -175,6 +185,7 @@ public class AddEmployee extends JFrame implements ActionListener {
         getContentPane().setBackground(Color.white);
         setLayout(null);
         setResizable(false);
+        setUndecorated(true);
         setVisible(true);
     }
 

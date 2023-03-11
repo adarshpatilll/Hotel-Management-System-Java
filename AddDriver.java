@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+@SuppressWarnings("all")
 public class AddDriver extends JFrame implements ActionListener {
     JTextField idArea, nameArea, ageArea;
     JRadioButton genRbMale, genRbFemale;
@@ -144,6 +145,7 @@ public class AddDriver extends JFrame implements ActionListener {
         setIconImage(logo);
         setBounds(500, 250, 900, 450);
         getContentPane().setBackground(Color.white);
+        setUndecorated(true);
         setLayout(null);
         setResizable(false);
         setVisible(true);
