@@ -68,7 +68,6 @@ public class Login implements ActionListener{
         Image logo = decLogo.getImage().getScaledInstance(30, 20, Image.SCALE_DEFAULT);
         fr.setIconImage(logo);
         fr.setBounds(700, 330, 500,320);
-        // fr.getContentPane().setBackground(Color.WHITE);
         fr.setUndecorated(true);
         fr.setLayout(null);
         fr.setVisible(true);
@@ -81,39 +80,74 @@ public class Login implements ActionListener{
 
         if(e.getSource() == loginButton){
            
-            Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
             String user = nameArea.getText();
             String pass = passArea.getText();
 
-            try {
-                Conn c = new Conn();
-                String query = "select * from login where username = '"+ user +"' and password = '"+ pass+"'";
-                
-                ResultSet rs = c.s.executeQuery(query);
+            if(user.equals("admin") && pass.equals("admin")){
+                try {
+                    Conn c = new Conn();
+                    
+                    ResultSet rs = c.s.executeQuery("select * from login where username = '"+ user +"' and password = '"+ pass+"'");
 
-                if (rs.next()){
-                    LandingPage.fr.setVisible(false);
-                    fr.setVisible(false);
-                    new Dashboard();
+                    if (rs.next()){                     
+                        LandingPage.fr.setVisible(false);
+                        fr.setVisible(false);
+                        LoginLogoutTime.loginFunc(); // Login timer
+                        new Dashboard();
+                    }
+                    else {
+                        attempt--;
+                        att.setText("Attempts Left  >>  "+attempt);
+                        if(attempt >= 1)
+                            JOptionPane.showMessageDialog(null, "Invalid Username or Password","Warning", 2);
+                        nameArea.setText(null);
+                        passArea.setText(null);
+                    }
+                    if (attempt == 0){
+                        JOptionPane.showMessageDialog(null, "Attempts Exceeded!", "Blocked",0);
+                        nameArea.setEnabled(false);
+                        passArea.setEnabled(false);
+                        loginButton.setEnabled(false);
+                    }
+                    
                 }
-                else {
-                    attempt--;
-                    att.setText("Attempts Left  >>  "+attempt);
-                    if(attempt >= 1)
-                        JOptionPane.showMessageDialog(null, "Invalid Username or Password","Warning", 2);
-                    nameArea.setText(null);
-                    passArea.setText(null);
+                catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-                if (attempt == 0){
-                    JOptionPane.showMessageDialog(null, "Attempts Exceeded!", "Blocked",0);
-                    nameArea.setEnabled(false);
-                    passArea.setEnabled(false);
-                    loginButton.setEnabled(false);
-                }
-                
             }
-            catch (Exception ex) {
-                ex.printStackTrace();
+            else {
+                try {
+                    Conn c = new Conn();
+                    String query = "select * from login where username = '"+ user +"' and password = '"+ pass+"'";
+                    
+                    ResultSet rs = c.s.executeQuery(query);
+
+                    if (rs.next()){
+                        LandingPage.fr.setVisible(false);
+                        fr.setVisible(false);
+                        LoginLogoutTime.loginFunc(); // Login Timer
+                        Dashboard d = new Dashboard();
+                        d.admin.setEnabled(false); // Disable JMenu of Admin if user & pass is other than admin & admin.
+                    }
+                    else {
+                        attempt--;
+                        att.setText("Attempts Left  >>  "+attempt);
+                        if(attempt >= 1)
+                            JOptionPane.showMessageDialog(null, "Invalid Username or Password","Warning", 2);
+                        nameArea.setText(null);
+                        passArea.setText(null);
+                    }
+                    if (attempt == 0){
+                        JOptionPane.showMessageDialog(null, "Attempts Exceeded!", "Blocked",0);
+                        nameArea.setEnabled(false);
+                        passArea.setEnabled(false);
+                        loginButton.setEnabled(false);
+                    }
+                    
+                }
+                catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         }
         else{
@@ -123,6 +157,5 @@ public class Login implements ActionListener{
 
     public static void main(String[] args) {
         new Login();
-        Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
     }
 }

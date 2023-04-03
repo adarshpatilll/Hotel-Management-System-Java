@@ -181,13 +181,15 @@ public class AddEmployee extends JFrame implements ActionListener {
         Image logo = decLogo.getImage().getScaledInstance(30, 20, Image.SCALE_DEFAULT);
         setTitle("Add Employee");
         setIconImage(logo);
-        setBounds(500, 250, 900, 600);
+        setBounds(500, 250, 900, 550);
         getContentPane().setBackground(Color.white);
+        setAlwaysOnTop(true);
         setLayout(null);
         setResizable(false);
         setUndecorated(true);
         setVisible(true);
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e){
@@ -243,6 +245,8 @@ public class AddEmployee extends JFrame implements ActionListener {
             c.s.executeUpdate(query);
 
             JOptionPane.showMessageDialog(null,  "Employee Added Successfully","Success", 1);
+            
+            c.s.close();
 
             setVisible(false);
             

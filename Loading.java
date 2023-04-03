@@ -14,12 +14,12 @@ public class Loading extends JFrame {
         //--------Status
         status = new JLabel("Loading...");
         status.setBounds(570, 560, 300, 200);
-        status.setForeground(Color.black);
+        status.setForeground(Color.white);
         status.setFont(new Font("Arial",1,20));
         add(status);
 
         //--------Image
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("images/loading1.jpg"));
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("images/loading.jpg"));
         Image i2 = i1.getImage().getScaledInstance(800, 700, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel finalImg = new JLabel(i3);
@@ -143,7 +143,7 @@ public class Loading extends JFrame {
                 catch(InterruptedException e){
                     e.printStackTrace();
                 }
-        }
+            }
         );
 
         t.start(); 

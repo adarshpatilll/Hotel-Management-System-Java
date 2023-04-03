@@ -93,6 +93,7 @@ public class AddDriver extends JFrame implements ActionListener {
 
             carArea = new JComboBox<>(str);
             carArea.setBounds(200, 230, 200, 30);
+            carArea.setBackground(Color.white);
             carArea.setForeground(Color.black);
             carArea.setBackground(Color.WHITE);
             carArea.setFont(new Font("arial", 0, 17));
@@ -143,10 +144,11 @@ public class AddDriver extends JFrame implements ActionListener {
         Image logo = decLogo.getImage().getScaledInstance(30, 20, Image.SCALE_DEFAULT);
         setTitle("Add Driver");
         setIconImage(logo);
-        setBounds(500, 250, 900, 450);
+        setBounds(530, 300, 870, 410);
         getContentPane().setBackground(Color.white);
         setUndecorated(true);
         setLayout(null);
+        setAlwaysOnTop(true);
         setResizable(false);
         setVisible(true);
     }

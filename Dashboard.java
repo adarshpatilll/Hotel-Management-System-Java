@@ -2,18 +2,31 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.*;
+import java.time.format.*;
 
 
-public class Dashboard extends JFrame implements ActionListener{
+public class Dashboard implements ActionListener{
+    
+    //------Globally declared -> imgLbl
+    JLabel imgLbl;
+    JMenu admin;
+    static JFrame fr;
 
     Dashboard(){
+
+        fr = new JFrame("Dashboard");
+
         //------Main Image
         ImageIcon declareMainImg = new ImageIcon(ClassLoader.getSystemResource("images/third.jpg"));
         Image setImgSize = declareMainImg.getImage().getScaledInstance(1925, 1030, Image.SCALE_DEFAULT);
         ImageIcon finalImg = new ImageIcon(setImgSize);
-        JLabel imgLbl = new JLabel(finalImg);
+        imgLbl = new JLabel(finalImg);
         imgLbl.setBounds(0,-38,1925,1030);
-        add(imgLbl);
+        fr.add(imgLbl);
+
+        //------Clock
+        clock();
 
         //------Title -> VAY To Relax Welcomes You
         JLabel titleLbl = new JLabel("\"VAY To Relax\" Welcomes You");
@@ -41,7 +54,7 @@ public class Dashboard extends JFrame implements ActionListener{
                 hotel.add(rec);
 
             //------Menu -> Admin
-            JMenu admin = new JMenu("ADMIN");
+            admin = new JMenu("ADMIN");
             admin.setForeground(Color.blue);
             admin.setFont(new Font("arial", 1, 14));
             mb.add(admin);
@@ -72,26 +85,96 @@ public class Dashboard extends JFrame implements ActionListener{
         //------Frame
         ImageIcon decLogo = new ImageIcon(ClassLoader.getSystemResource("images/logo.png"));
         Image logo = decLogo.getImage().getScaledInstance(30, 20, Image.SCALE_DEFAULT);
-        setIconImage(logo);
-        setTitle("Dashboard");
-        setBounds(0, 5, 1925, 1030);
-        setLayout(null);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        fr.setIconImage(logo);
+        fr.setTitle("Dashboard");
+        fr.setBounds(0, 5, 1925, 1030);
+        fr.setLayout(null);
+        fr.setResizable(false);
+        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fr.setVisible(true);
     }
 
+    //------Globally declared -> timeLbl[]
+    private JLabel timeLbl[] = new JLabel[6];
+
+    private void clock(){
+
+        //-------Panel
+        JPanel p[] = new JPanel[6];
+        int x=70, y=150, w=250, h=80;
+
+        for(int i=0; i<6; i++){
+            p[i] = new JPanel(new GridLayout(2,1));
+            p[i].setBounds(x, y, w, h);
+            p[i].setBackground(new Color(13, 13, 13));
+            imgLbl.add(p[i]);
+            x+=300;
+        }
+
+        //-------Country Label
+        JLabel date[] = new JLabel[6];
+
+        String countryName[] = {"   United Arab Emirates", "        U.S. Of America", "                Japan", "        United Kingdom", "               Europe", "              Thailand"};
+
+        for(int i=0; i<6; i++){
+            date[i] = new JLabel();
+            date[i].setText(countryName[i]);
+            date[i].setFont(new Font("tahoma",1, 20));
+            date[i].setForeground(Color.ORANGE);
+            p[i].add(date[i]);
+        }
+        
+        //-------Time Label
+        for(int i=0; i<6; i++){
+            timeLbl[i] = new JLabel();
+            timeLbl[i].setText("");
+            timeLbl[i].setFont(new Font("SansSerif",1, 25));
+            timeLbl[i].setForeground(Color.cyan);
+            p[i].add(timeLbl[i]);
+        }
+
+        //------Update Time Function
+        updateTime();
+    }
+
+
+    private void updateTime(){
+        String counName[] = {"Asia/Dubai", "US/Mountain", "Asia/Tokyo", "Europe/London", "Europe/Monaco", "Asia/Bangkok"};
+        LocalTime lt[] = new LocalTime[6];
+
+        for(int i=0; i<6; i++){
+            lt[i] = LocalTime.now(ZoneId.of(counName[i]));
+            DateTimeFormatter f = DateTimeFormatter.ofPattern("HH:mm:ss");
+            timeLbl[i].setText("           "+lt[i].format(f));
+        }
+
+        Timer delay = new Timer(1000, d -> {updateTime();});
+        delay.start();
+    }
+
+    
     @Override
     public void actionPerformed(ActionEvent e){
-        if(e.getActionCommand().equals("ADD EMPLOYEE"))
-            new AddEmployee();
-        else if(e.getActionCommand().equals("ADD ROOMS"))
-            new AddRooms();
-        else if(e.getActionCommand().equals("ADD DRIVER"))
-            new AddDriver();
-        // else if(e.getActionCommand().equals("RECEPTION"))
-            
+
+        switch(e.getActionCommand()){
+            case "ADD EMPLOYEE":
+                new AddEmployee();
+                break;
+                
+            case "ADD ROOMS":
+                new AddRooms();
+                break;
+                
+            case "ADD DRIVER":
+                new AddDriver();
+                break;
+                
+            case "RECEPTION":
+                new Reception();
+                break;
+        }
     }
+
 
     public static void main(String... ap) {
         new Dashboard();

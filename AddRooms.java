@@ -37,6 +37,7 @@ public class AddRooms extends JFrame implements ActionListener {
             String avlStr[] = {"Occupied", "Vacant"};
             availA = new JComboBox<>(avlStr);
             availA.setBounds(250, 100, 200, 30);
+            availA.setBackground(Color.white);
             availA.setFont(new Font("arial", 0, 17));
             add(availA);
 
@@ -52,6 +53,7 @@ public class AddRooms extends JFrame implements ActionListener {
             String clnStr[] = {"Cleaned", "Not Cleaned"};
             cleanA = new JComboBox<>(clnStr);
             cleanA.setBounds(250, 150, 200, 30);
+            cleanA.setBackground(Color.white);
             cleanA.setFont(new Font("arial", 0, 17));
             add(cleanA);
         
@@ -81,6 +83,7 @@ public class AddRooms extends JFrame implements ActionListener {
             String bedStr[] = {"Single (AC)", "Single (Non AC)", "Double (AC)", "Queen Maharani (AC)", "King Raja (AC)", "Executive Special", "Business Paradise"};
             bedTypeA = new JComboBox<>(bedStr);
             bedTypeA.setBounds(250, 250, 200, 30);
+            bedTypeA.setBackground(Color.white);
             bedTypeA.setFont(new Font("arial", 0, 17));
             add(bedTypeA);
         
@@ -116,13 +119,15 @@ public class AddRooms extends JFrame implements ActionListener {
         Image logo = decLogo.getImage().getScaledInstance(30, 20, Image.SCALE_DEFAULT);
         setIconImage(logo);
         setTitle("Add Rooms");
-        setBounds(500, 250, 900, 470);
+        setBounds(500, 300, 900, 400);
         getContentPane().setBackground(Color.white);
         setLayout(null);
+        setAlwaysOnTop(true);
         setUndecorated(true);
         setResizable(false);
         setVisible(true);
     }
+
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == cancel){
