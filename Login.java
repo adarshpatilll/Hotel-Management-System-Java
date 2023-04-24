@@ -14,6 +14,7 @@ public class Login implements ActionListener{
     private JLabel att;
 
     Login(){
+
         //--------Name Label
         JLabel nameLbl = new JLabel("NAME");
         nameLbl.setBounds(80, 80, 100, 20);
@@ -59,8 +60,7 @@ public class Login implements ActionListener{
         att = new JLabel("Attempts Left  >>  "+strAtt);
         att.setBounds(230, 165, 300, 30);
         att.setFont(new Font("calibri", 1, 17));
-        if(attempt == 3)
-            att.setForeground(Color.RED);
+        att.setForeground(Color.RED);
         fr.add(att);
         
         //--------Frame
@@ -73,8 +73,8 @@ public class Login implements ActionListener{
         fr.setVisible(true);
     }
     
-    private int attempt = 3;
-
+    private static int attempt = 3;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -82,6 +82,11 @@ public class Login implements ActionListener{
            
             String user = nameArea.getText();
             String pass = passArea.getText();
+
+            if(user.equals("") || pass.equals("")){
+                JOptionPane.showMessageDialog(null, "All Fields Are Required!", "Warning",2);
+                return;
+            }
 
             if(user.equals("admin") && pass.equals("admin")){
                 try {
@@ -94,22 +99,7 @@ public class Login implements ActionListener{
                         fr.setVisible(false);
                         LoginLogoutTime.loginFunc(); // Login timer
                         new Dashboard();
-                    }
-                    else {
-                        attempt--;
-                        att.setText("Attempts Left  >>  "+attempt);
-                        if(attempt >= 1)
-                            JOptionPane.showMessageDialog(null, "Invalid Username or Password","Warning", 2);
-                        nameArea.setText(null);
-                        passArea.setText(null);
-                    }
-                    if (attempt == 0){
-                        JOptionPane.showMessageDialog(null, "Attempts Exceeded!", "Blocked",0);
-                        nameArea.setEnabled(false);
-                        passArea.setEnabled(false);
-                        loginButton.setEnabled(false);
-                    }
-                    
+                    }                    
                 }
                 catch (Exception ex) {
                     ex.printStackTrace();
@@ -131,27 +121,33 @@ public class Login implements ActionListener{
                     }
                     else {
                         attempt--;
-                        att.setText("Attempts Left  >>  "+attempt);
-                        if(attempt >= 1)
+
+                        if(attempt >= 1){
+                            att.setText("Attempts Left  >>  "+attempt);
                             JOptionPane.showMessageDialog(null, "Invalid Username or Password","Warning", 2);
+                        }
+                        else if(attempt == 0){
+                            att.setText("Account Blocked!!!");
+                            JOptionPane.showMessageDialog(null, "Attempts Exceeded!", "Blocked",0);
+                            nameArea.setEnabled(false);
+                            passArea.setEnabled(false);
+                            loginButton.setEnabled(false);
+                            attempt = 3;
+                        }
+                                                System.out.println(attempt);
                         nameArea.setText(null);
                         passArea.setText(null);
-                    }
-                    if (attempt == 0){
-                        JOptionPane.showMessageDialog(null, "Attempts Exceeded!", "Blocked",0);
-                        nameArea.setEnabled(false);
-                        passArea.setEnabled(false);
-                        loginButton.setEnabled(false);
                     }
                     
                 }
                 catch (Exception ex) {
                     ex.printStackTrace();
                 }
-            }
+            }                
         }
         else{
             fr.setVisible(false);
+            attempt = 3;
         }
     }
 

@@ -10,6 +10,7 @@ public class Conn{
             Class.forName("com.mysql.cj.jdbc.Driver");
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotelms", "root", "admin");
             s = c.createStatement();
+            
         } 
         catch (Exception e) {
             e.printStackTrace();

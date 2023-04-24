@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-/*
+/**
  * Hotel Name -> VAY To Relax
  * Founder -> Adarsh
  * Co-Founders -> Vikram, Yusuf
@@ -16,6 +16,7 @@ import java.awt.event.*;
     private JButton next;
 
     LandingPage(){
+        
         //------Main Image
         mainImg = new ImageIcon(ClassLoader.getSystemResource("images/landing.jpg"));
         imgLbl = new JLabel(mainImg);
@@ -39,6 +40,7 @@ import java.awt.event.*;
         fr.setBounds(0, 5, 1925, 1030);
         fr.setLayout(null);
         fr.setResizable(false);
+        fr.setAlwaysOnTop(true);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setVisible(true);
     }

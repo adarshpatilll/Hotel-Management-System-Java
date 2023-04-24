@@ -8,13 +8,13 @@ import java.time.format.*;
 
 public class Dashboard implements ActionListener{
     
-    //------Globally declared -> imgLbl
-    JLabel imgLbl;
+    JLabel imgLbl;     //------Globally declared -> imgLbl
     JMenu admin;
     static JFrame fr;
 
     Dashboard(){
 
+        // Main Frame Declaration
         fr = new JFrame("Dashboard");
 
         //------Main Image
@@ -90,6 +90,7 @@ public class Dashboard implements ActionListener{
         fr.setBounds(0, 5, 1925, 1030);
         fr.setLayout(null);
         fr.setResizable(false);
+        fr.setAlwaysOnTop(true);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setVisible(true);
     }

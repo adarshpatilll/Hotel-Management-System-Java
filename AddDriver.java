@@ -12,6 +12,7 @@ public class AddDriver extends JFrame implements ActionListener {
     JButton addDriver, cancel;
 
     AddDriver(){
+
         //------Label - ID
         JLabel idLbl = new JLabel("UNIQUE ID");
         idLbl.setBounds(60, 30, 120, 30);
@@ -110,6 +111,7 @@ public class AddDriver extends JFrame implements ActionListener {
             String avlStr[] = {"Available", "Not Available"};
             availA = new JComboBox<>(avlStr);
             availA.setBounds(200, 280, 200, 30);
+            availA.setBackground(Color.WHITE);
             availA.setFont(new Font("arial", 0, 17));
             add(availA);
         
@@ -164,15 +166,15 @@ public class AddDriver extends JFrame implements ActionListener {
             String gender = null;
 
             if(name.equals("")){
-                JOptionPane.showMessageDialog(null, "Name Should Not Be Empty!", "Warning", 2);
+                JOptionPane.showMessageDialog(this, "Name Should Not Be Empty!", "Warning", 2);
                 return;
             }
             if(age.equals("")){
-                JOptionPane.showMessageDialog(null, "Age Should Not Be Empty!", "Warning", 2);
+                JOptionPane.showMessageDialog(this, "Age Should Not Be Empty!", "Warning", 2);
                 return;
             }
             if(car.equals("")){
-                JOptionPane.showMessageDialog(null, "Cars Should Not Be Empty!", "Warning", 2);
+                JOptionPane.showMessageDialog(this, "Cars Should Not Be Empty!", "Warning", 2);
                 return;
             }
 
@@ -181,7 +183,7 @@ public class AddDriver extends JFrame implements ActionListener {
             else if (genRbFemale.isSelected())
                 gender = "Female";
             else if (gender == null){
-                JOptionPane.showMessageDialog(null, "Please Select Gender!", "Warning", 2);
+                JOptionPane.showMessageDialog(this, "Please Select Gender!", "Warning", 2);
                 return;
             }
 
@@ -192,13 +194,13 @@ public class AddDriver extends JFrame implements ActionListener {
 
                 c.s.executeUpdate(query);
 
-                JOptionPane.showMessageDialog(null,  "Driver Added Successfully","Success", 1);
+                JOptionPane.showMessageDialog(this,  "Driver Added Successfully","Success", 1);
 
                 setVisible(false);
                 
             } catch (Exception ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Enter Valid Input (Age) ", "Warning",  2);
+                JOptionPane.showMessageDialog(this, "Enter Valid Input (Age) ", "Warning",  2);
             }
         }
         else

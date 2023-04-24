@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.util.*;
 
 @SuppressWarnings("all")
+
 public class AddEmployee extends JFrame implements ActionListener {
     JTextField idArea, nameArea, ageArea, salArea, phoneArea, emailArea, aadharArea;
     JRadioButton genRbMale, genRbFemale;
@@ -183,9 +184,9 @@ public class AddEmployee extends JFrame implements ActionListener {
         setIconImage(logo);
         setBounds(500, 250, 900, 550);
         getContentPane().setBackground(Color.white);
-        setAlwaysOnTop(true);
         setLayout(null);
         setResizable(false);
+        setAlwaysOnTop(true);
         setUndecorated(true);
         setVisible(true);
     }
@@ -204,27 +205,27 @@ public class AddEmployee extends JFrame implements ActionListener {
         String gender = null;
 
         if(name.equals("")){
-            JOptionPane.showMessageDialog(null, "Name Should Not Be Empty!", "Warning", 2);
+            JOptionPane.showMessageDialog(this, "Name Should Not Be Empty!", "Warning", 2);
             return;
         }
         if(age.equals("")){
-            JOptionPane.showMessageDialog(null, "Age Should Not Be Empty!", "Warning", 2);
+            JOptionPane.showMessageDialog(this, "Age Should Not Be Empty!", "Warning", 2);
             return;
         }
         if(sal.equals("")){
-            JOptionPane.showMessageDialog(null, "Salary Should Not Be Empty!", "Warning", 2);
+            JOptionPane.showMessageDialog(this, "Salary Should Not Be Empty!", "Warning", 2);
             return;
         }
         if(phone.equals("")){
-            JOptionPane.showMessageDialog(null, "Contact No. Should Not Be Empty!", "Warning", 2);
+            JOptionPane.showMessageDialog(this, "Contact No. Should Not Be Empty!", "Warning", 2);
             return;
         }
         if(email.equals("")){
-            JOptionPane.showMessageDialog(null, "Email Should Not Be Empty!", "Warning", 2);
+            JOptionPane.showMessageDialog(this, "Email Should Not Be Empty!", "Warning", 2);
             return;
         }
         if(aadhar.equals("")){
-            JOptionPane.showMessageDialog(null, "Aadhaar Should Not Be Empty!", "Warning", 2);
+            JOptionPane.showMessageDialog(this, "Aadhaar Should Not Be Empty!", "Warning", 2);
             return;
         }
 
@@ -233,7 +234,7 @@ public class AddEmployee extends JFrame implements ActionListener {
         else if (genRbFemale.isSelected())
             gender = "Female";
         else if (gender == null){
-            JOptionPane.showMessageDialog(null, "Please Select Gender!", "Warning", 2);
+            JOptionPane.showMessageDialog(this, "Please Select Gender!", "Warning", 2);
             return;
         }
 
@@ -244,7 +245,7 @@ public class AddEmployee extends JFrame implements ActionListener {
 
             c.s.executeUpdate(query);
 
-            JOptionPane.showMessageDialog(null,  "Employee Added Successfully","Success", 1);
+            JOptionPane.showMessageDialog(this,  "Employee Added Successfully","Success", 1);
             
             c.s.close();
 
@@ -252,7 +253,7 @@ public class AddEmployee extends JFrame implements ActionListener {
             
         } catch (Exception ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Enter Valid Input (Age, Salary, Contact, Aadhar) ", "Warning",  2);
+            JOptionPane.showMessageDialog(this, "Enter Valid Input (Age, Salary, Contact, Aadhar) ", "Warning",  2);
         }
     }
 

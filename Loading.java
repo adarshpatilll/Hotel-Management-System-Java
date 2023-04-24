@@ -38,6 +38,7 @@ public class Loading extends JFrame {
         setBounds(600,150,800,700);
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
+        setAlwaysOnTop(true);
         setUndecorated(true);
         setVisible(true);
 
@@ -156,7 +157,8 @@ public class Loading extends JFrame {
             p.setValue(i);
             try {
                 Thread.sleep(45);
-            } catch (InterruptedException e) {
+            } 
+            catch (InterruptedException e) {
                 e.printStackTrace();
             }
 

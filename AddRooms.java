@@ -147,12 +147,12 @@ public class AddRooms extends JFrame implements ActionListener {
 
                 c.s.executeUpdate(query);
 
-                JOptionPane.showMessageDialog(null,  "Rooms Added Successfully","Success", 1);
+                JOptionPane.showMessageDialog(this,  "Rooms Added Successfully","Success", 1);
                 setVisible(false);
             } 
             catch (Exception ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Enter Valid Input (Room No., Price)", "Warning",  2);
+                JOptionPane.showMessageDialog(this, "Enter Valid Input (Room No., Price)", "Warning",  2);
             }
         }
     }
